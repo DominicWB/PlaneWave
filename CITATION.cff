@@ -1,11 +1,12 @@
 cff-version: 1.2.0
-message: "Please cite the accompanying manuscript and identify the release tag or commit used."
+message: "If you use this formalisation, please cite the corresponding software release and the research paper when available."
 type: software
 title: "PlaneWave: formalised discretisation error bounds for Coulomb quantum simulation"
 authors:
   - family-names: Berry
     given-names: Dominic W.
 version: 1.0.0
+url: "https://github.com/DominicWB/PlaneWave"
 abstract: >-
   Lean formalisation of periodic Coulomb ground-energy, spatial-grid, dynamical,
   kinetic-energy and projection-flux error estimates, with free-boundary energy
