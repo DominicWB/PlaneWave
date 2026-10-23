@@ -1,74 +1,94 @@
 # PlaneWave
 
-Lean 4 proofs of spatial discretisation error bounds for Coulomb quantum
-simulation. The accompanying research paper is released separately and is not
-part of this repository.
+Lean 4 proofs accompanying **Basis-set error bounds for first-quantised quantum simulation of
+chemistry**. The project formalises plane-wave and specified spatial-grid discretisation bounds
+for Coulomb Hamiltonians, including ground energies, smooth position observables, logarithmic
+kinetic-energy bounds and stopping-power estimates.
 
-The project covers periodic plane-wave and spatial-grid estimates,
-unconditional Galerkin kinetic-energy and stopping-power bounds, projection
-flux, and free-boundary energy and dynamical comparisons under their stated
-hypotheses. The free-boundary dynamical theorems include moving nuclei,
-clamped nuclei, and internal spin.
+This package contains **262 library modules** and an axiom-check file with **1,179 reports**.
+Lean and Mathlib are pinned to **v4.32.1**; `lake-manifest.json` records the exact dependency
+commits. The report count is a count of checks, not distinct theorems.
 
-## Requirements and build
+## Build and check
 
-Install [Elan](https://lean-lang.org/install/manual/) and Git. The repository
-pins **Lean 4.32.1**, **Mathlib v4.32.1**, and all dependency revisions in
-`lean-toolchain`, `lakefile.toml` and `lake-manifest.json`. Run from the
-repository root:
+Install Git and the Lean toolchain manager `elan`, then run these commands from the directory
+containing `lakefile.toml`. The toolchain is selected by `lean-toolchain`.
 
-```sh
+Linux or macOS:
+
+```bash
 lake exe cache get
-lake build
+bash scripts/build.sh
 ```
 
-`lake exe cache get` is recommended for downloading precompiled Mathlib; it
-is not necessary if Mathlib is already built. The build may need several GB
-of memory. Do not run `lake update` when reproducing the locked version.
+Windows PowerShell:
 
-## Proof and axiom checks
-
-The umbrella module `PlaneWave.lean` imports all **222** library modules.
-`AxiomCheck.lean` contains **869** `#print axioms` commands for key results:
-
-```sh
-lake env lean AxiomCheck.lean
+```powershell
+lake exe cache get
+.\scripts\build.ps1
 ```
 
-The expected foundational axioms are `propext`, `Classical.choice` and
-`Quot.sound`. The GitHub Actions workflow builds the library and checks the
-complete axiom-report sequence against these allowed axioms.
+The cache command downloads compiled Mathlib dependencies; it does not verify this project's
+proofs. The build script runs `lake build` and then elaborates `AxiomCheck.lean`. The local axiom
+scripts reject failed elaboration and axioms other than `propext`, `Classical.choice` and
+`Quot.sound`, including `sorryAx`. To rerun only that check after a successful build, use
+`bash scripts/check_axioms.sh` or `.\scripts\check_axioms.ps1`.
 
-## Main declarations
+Generated build and axiom logs are written in the project root and excluded from version
+control, together with `.lake/`. Keep `lean-toolchain` and the dependency lockfile unchanged
+when reproducing this release. The
+[GitHub workflow](.github/workflows/ci.yml) runs the build and additionally requires the complete
+axiom-report sequence to match `AxiomCheck.lean`, in order, with no unexpected output.
 
-| Result | Lean declaration |
+## Results and scope
+
+- **Periodic systems:** ground-energy bounds cover fixed and quantum nuclei, including electronic
+  spin and the stated exchange sectors. Smooth-observable and kinetic-energy estimates concern
+  the specified Galerkin and truncated-kernel grid Hamiltonians.
+- **Dynamical data:** the manuscript's bounds use initial states in the domain of the squared
+  Hamiltonian, with the stated norm budgets. Smooth-observable estimates require the observable
+  regularity specified in the statements. Projected initial states are not renormalised unless
+  a normalisation result is explicitly invoked.
+- **Isolated-system energies:** the two-sided result uses clamped nuclei in a specified scalar
+  exchange sector, an exponentially localised free-space ground state, and the separate
+  finite-volume ground-state localisation assumption. The corresponding sufficient basis-size
+  bound is conditional on these inputs; the package does not identify this sector energy with
+  the full spin-inclusive free-space ground energy.
+- **Isolated-system dynamics:** the free-space solution is supplied, rather than constructed by
+  the formalisation. Wavefunction and shell-gradient leakage remain hypotheses. The cut initial
+  state must satisfy the squared-Hamiltonian-domain condition with uniform bounds; the package
+  proves this condition for the stated compatible cutoffs. Explicit clamped-nucleus product
+  cutoffs require equal moving-particle masses. Spin-inclusive dynamical versions are included.
+
+The latest modules include periodic kinetic endpoints for arbitrary positive masses and in
+terms of the one-particle basis size, as well as isolated-system endpoints for bounded profile
+variation and physical cell and grid Hamiltonians with their zero modes retained.
+
+## Principal declarations
+
+The following are entry points, not a replacement for the hypotheses in their Lean statements.
+The [full correspondence](docs/FORMALISATION.md) lists supporting results and conventions.
+
+| Result | Selected declarations |
 |---|---|
-| Periodic ground-energy error | `PlaneWaveCertificate.periodicMolecularCubicError` |
-| Projection flux | `FSFlux.thm_flux3` |
-| Unconditional kinetic-energy bound | `FSAsymp.thm_src3_uncond` |
-| Stopping-power bound | `FSAsymp.cor_stopping3_uncond` |
-| Free-boundary energy and mode-count bound | `FreeBoundary.free_energy_endpoint`, `FreeBoundary.free_energy_complexity` |
-| Non-Born–Oppenheimer dynamics | `FreeBoundary.free_dyn_nbo_spin_uniform` |
-| Clamped-nuclei dynamics | `FreeBoundary.free_dyn_bo_spin_uniform` |
+| Periodic ground energy | `PlaneWaveCertificate.periodicMolecularCubicError`, `PlaneWaveCertificate.periodicCoulombCubicError` |
+| Periodic truncated-kernel grid energy | `PlaneWaveGrid.periodicCoulombSectorKernelGridError` |
+| Smooth observables with spin | `PlaneWaveDynamics.thm_dyn_spin`, `PlaneWaveSpin.thm_grid_dyn_sharp_spin` |
+| Periodic kinetic energy, positive masses, spin and basis-size conversion | `KineticLog.thm_kinetic_log_galerkin_spin_pos_N`, `KineticLog.thm_kinetic_log_grid_spin_pos_N` |
+| Isolated-system energy and sufficient basis size | `FreeBoundary.free_energy_endpoint_vbar`, `FreeBoundary.free_energy_complexity_vbar` |
+| Isolated-system smooth observables, physical Hamiltonians | `FreeBoundary.free_dyn_nbo_spin_uniform_phys`, `FreeBoundary.free_dyn_bo_spin_uniform_phys` |
+| Isolated-system kinetic energy and stopping power, physical Hamiltonians | `KineticLog.free_kinetic_log_spin_phys_at`, `KineticLog.free_stopping_log_spin_phys_at` |
 
-For example, in a Lean file:
+`PlaneWave.lean` imports all library modules. The main source directories are
+`PlaneWave/KineticLog/` for the logarithmic kinetic bounds and
+`PlaneWave/FreeBoundary/` for isolated systems; the older flux and source estimates remain part
+of the library. See [docs/FORMALISATION.md](docs/FORMALISATION.md) for the complete module index,
+manuscript-label map and proof correspondence.
 
-```lean
-import PlaneWave
-#check FSAsymp.thm_src3_uncond
-#check FreeBoundary.free_dyn_bo_spin_uniform
-```
+## Verification
 
-## Scope
-
-“Unconditional” for the Galerkin kinetic-energy bound refers to the proved
-third-order completion, not to removal of the theorem's regularity assumptions.
-The free-boundary energy comparison assumes the specified ground-state
-localisation, and its ground-energy statement is in a scalar exchange sector.
-The free-boundary dynamical estimates assume an exact free-space solution
-and local leakage. A canonical free-space propagator and a spin-sector
-minimisation theorem for the free-boundary ground energy are not part of this
-formalisation.
-
-The separate research paper gives the full mathematical statements and proofs.
-When citing the code, identify the repository's release tag or commit hash.
+Compiling the library checks every proof. `AxiomCheck.lean`, run by the build scripts and by the
+GitHub workflow, confirms that each of the 1,179 checked statements depends only on `propext`,
+`Classical.choice` and `Quot.sound`; no module contains `sorry`. A clean build of the project
+takes about an hour on two CPU cores with 7 GB of memory, with the Mathlib dependencies
+downloaded by `lake exe cache get`.

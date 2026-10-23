@@ -5,16 +5,25 @@ title: "PlaneWave: formalised discretisation error bounds for Coulomb quantum si
 authors:
   - family-names: Berry
     given-names: Dominic W.
-version: 1.0.0
-url: "https://github.com/DominicWB/PlaneWave"
+version: 1.1.0
+date-released: 2026-10-23
+repository-code: "https://github.com/DominicWB/PlaneWave"
 abstract: >-
-  Lean formalisation of periodic Coulomb ground-energy, spatial-grid, dynamical,
-  kinetic-energy and projection-flux error estimates, with free-boundary energy
-  comparisons and spin-inclusive Born-Oppenheimer and non-Born-Oppenheimer dynamics
-  under the stated regularity and localisation hypotheses.
+  Lean 4 and Mathlib formalisation accompanying the manuscript "Basis-set error
+  bounds for first-quantised quantum simulation of chemistry". It covers plane-wave
+  and spatial-grid error bounds for periodic Coulomb Hamiltonians: ground energies,
+  smooth observables under the dynamics, logarithmic kinetic-energy bounds with
+  stopping-power estimates, and the projection-flux and kinetic-energy-source
+  estimates. For isolated systems it covers range-truncated free-boundary energy
+  comparisons with the sufficient basis size, and dynamics and kinetic-energy
+  bounds for Born-Oppenheimer and non-Born-Oppenheimer systems, including internal
+  spin, under the stated regularity and localisation hypotheses.
 keywords:
   - Lean
+  - Mathlib
   - formal verification
   - quantum simulation
+  - first quantisation
   - Coulomb Hamiltonian
   - plane waves
+  - basis-set error

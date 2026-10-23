@@ -4,8 +4,8 @@ import PlaneWave
 # Axiom check
 
 One `#print axioms` report for each main statement of every module. Every report should list
-only `propext`, `Classical.choice` and `Quot.sound`. Use
-`lake env lean AxiomCheck.lean` to print the reports; the GitHub workflow checks them.
+only `propext`, `Classical.choice` and `Quot.sound`; `scripts/check_axioms.ps1` (or `.sh`) runs
+this file and checks that.
 -/
 
 -- PlaneWave.Certificate
@@ -1196,3 +1196,393 @@ only `propext`, `Classical.choice` and `Quot.sound`. Use
 #print axioms GridFold.fold_pair_galerkin
 #print axioms GridFold.tpoly_nuc
 #print axioms GridFold.norm_nuc_coeff_le
+
+-- PlaneWave.KineticLog.Sylvester
+#print axioms KineticLog.norm_mop_le
+#print axioms KineticLog.norm_sylvester_le
+#print axioms KineticLog.norm_sylvester_le'
+#print axioms KineticLog.hasDerivAt_phiT
+#print axioms KineticLog.norm_mop_phiT_le
+
+-- PlaneWave.KineticLog.DyadicDuhamel
+#print axioms KineticLog.lmat_decomp
+#print axioms KineticLog.dyadic_duhamel
+
+-- PlaneWave.KineticLog.ExactSpectral
+#print axioms KineticLog.finite_eigen_ge
+#print axioms KineticLog.Hs_lower
+#print axioms KineticLog.exists_exactEigen
+#print axioms KineticLog.ExactEigen.inner_b_H
+#print axioms KineticLog.ExactEigen.evo_b
+#print axioms KineticLog.ExactEigen.inner_b_evo
+#print axioms KineticLog.ExactEigen.norm_sub_proj_le
+#print axioms KineticLog.ExactEigen.norm_Hs2_le
+
+-- PlaneWave.KineticLog.SpectralTails
+#print axioms KineticLog.W_tail_le
+#print axioms KineticLog.zv_budget
+#print axioms KineticLog.norm_tail_zv_le
+
+-- PlaneWave.KineticLog.GalerkinConsistency
+#print axioms KineticLog.galerkin_graph
+#print axioms KineticLog.galerkin_delta
+#print axioms KineticLog.galerkin_transfer
+
+-- PlaneWave.KineticLog.Galerkin
+#print axioms KineticLog.galerkin_coord
+#print axioms KineticLog.galerkin_retained_core
+
+-- PlaneWave.KineticLog.GalerkinEndpoint
+#print axioms KineticLog.expect_sub_le
+#print axioms KineticLog.kinetic_retained_galerkin
+#print axioms KineticLog.thm_kinetic_log_galerkin
+#print axioms KineticLog.cor_stopping_log_galerkin
+
+-- PlaneWave.KineticLog.GalerkinSpin
+#print axioms KineticLog.kinetic_retained_galerkin_spin
+#print axioms KineticLog.thm_kinetic_log_galerkin_spin
+#print axioms KineticLog.cor_stopping_log_galerkin_spin
+
+-- PlaneWave.KineticLog.GridSpectral
+#print axioms KineticLog.zv_budget_shift
+#print axioms KineticLog.norm_tail_zv_shift_le
+#print axioms KineticLog.grB_eigen
+#print axioms KineticLog.grE_lower
+#print axioms KineticLog.grid_flow_eigen
+#print axioms KineticLog.inner_grB_flow
+#print axioms KineticLog.grid_low_tail
+
+-- PlaneWave.KineticLog.GridConsistency
+#print axioms KineticLog.regCoeff_H_eq_gRes
+#print axioms KineticLog.grid_cons
+#print axioms KineticLog.norm_gSrc_le
+#print axioms KineticLog.norm_gRes_le
+#print axioms KineticLog.exact_low_reg
+#print axioms KineticLog.grid_delta_raw
+#print axioms KineticLog.grid_transfer_raw
+
+-- PlaneWave.KineticLog.GridDuhamel
+#print axioms KineticLog.grid_coord
+#print axioms KineticLog.grid_core_pair
+
+-- PlaneWave.KineticLog.GridShells
+#print axioms KineticLog.norm_wM_regKin_shells
+
+-- PlaneWave.KineticLog.GridTraj
+#print axioms KineticLog.exact_traj_shells
+#print axioms KineticLog.grid_traj_shells
+
+-- PlaneWave.KineticLog.GridRates
+#print axioms KineticLog.dRawG_le
+#print axioms KineticLog.fRawG_le
+
+-- PlaneWave.KineticLog.GridEndpoint
+#print axioms KineticLog.grid_proj_term
+#print axioms KineticLog.grid_kinetic_explicit
+#print axioms KineticLog.thm_kinetic_log_grid
+#print axioms KineticLog.cor_stopping_log_grid
+
+-- PlaneWave.KineticLog.GridSpin
+#print axioms KineticLog.thm_kinetic_log_grid_spin
+#print axioms KineticLog.cor_stopping_log_grid_spin
+
+-- PlaneWave.KineticLog.OpenExact
+#print axioms KineticLog.Hs_lower_gL
+#print axioms KineticLog.exists_exactEigen_gL
+#print axioms KineticLog.W_tail_le_gL
+#print axioms KineticLog.zv_budget_gL
+#print axioms KineticLog.norm_tail_zv_gL
+#print axioms KineticLog.zv_budget_shift_gL
+#print axioms KineticLog.norm_tail_zv_shift_gL
+
+-- PlaneWave.KineticLog.OpenGridSpectral
+#print axioms KineticLog.grE_lower_U
+#print axioms KineticLog.norm_wPhys_grVL_le
+#print axioms KineticLog.grid_low_tail_U
+
+-- PlaneWave.KineticLog.OpenConsistency
+#print axioms KineticLog.regCoeff_H_eq_gRes_gL
+#print axioms KineticLog.grid_cons_gL
+#print axioms KineticLog.norm_gSrc_gL
+#print axioms KineticLog.norm_gRes_gL
+#print axioms KineticLog.exact_low_reg_gL
+#print axioms KineticLog.grid_delta_raw_gL
+#print axioms KineticLog.grid_transfer_raw_gL
+
+-- PlaneWave.KineticLog.OpenDuhamel
+#print axioms KineticLog.grid_coord_gL
+#print axioms KineticLog.grid_core_pair_gL
+
+-- PlaneWave.KineticLog.OpenTraj
+#print axioms KineticLog.traj_tails_gL
+#print axioms KineticLog.exact_traj_shells_gL
+#print axioms KineticLog.datum_weight_gL
+#print axioms KineticLog.grid_traj_weight_gL
+
+-- PlaneWave.KineticLog.OpenRates
+#print axioms KineticLog.dRawU_le
+#print axioms KineticLog.fRawU_le
+#print axioms KineticLog.datum_res_gL
+#print axioms KineticLog.grid_traj_shells_gL
+
+-- PlaneWave.KineticLog.OpenCell
+#print axioms KineticLog.grid_proj_term_gL
+#print axioms KineticLog.cell_kinetic_explicit
+#print axioms KineticLog.T0U_scales
+#print axioms KineticLog.cellK0_scales
+#print axioms KineticLog.thm_cell_kinetic_log_gL
+
+-- PlaneWave.KineticLog.OpenFree
+#print axioms KineticLog.hasWeakGrad_mul
+#print axioms KineticLog.inner_ibp
+#print axioms KineticLog.inner_kinP_eq
+#print axioms KineticLog.hasFreeWeakKinetic_massP
+#print axioms KineticLog.HasFreeHamiltonian.sub
+#print axioms KineticLog.norm_H_conserved
+
+-- PlaneWave.KineticLog.OpenLocal
+#print axioms KineticLog.coeff_cut_grad
+#print axioms KineticLog.regKin_expect_cut
+#print axioms KineticLog.free_loc_coord
+#print axioms KineticLog.free_torus_kin
+
+-- PlaneWave.KineticLog.OpenEndpoint
+#print axioms KineticLog.exists_evoData_gL
+#print axioms KineticLog.torus_pair_step
+#print axioms KineticLog.cell_step
+#print axioms KineticLog.free_kin_assemble
+#print axioms KineticLog.free_kinetic_log_endpoint
+
+-- PlaneWave.KineticLog.OpenCompat
+#print axioms KineticLog.exists_kinP
+#print axioms KineticLog.free_kinetic_log
+#print axioms KineticLog.free_kinetic_log_nbo
+#print axioms KineticLog.free_kinetic_log_bo
+
+-- PlaneWave.KineticLog.OpenUniform
+#print axioms KineticLog.free_kinetic_log_nbo_uniform
+#print axioms KineticLog.free_kinetic_log_bo_uniform
+
+-- PlaneWave.KineticLog.OpenStop
+#print axioms KineticLog.secant_arith_free
+#print axioms KineticLog.free_stopping_log
+#print axioms KineticLog.basis_count_arith
+#print axioms KineticLog.free_kinetic_log_N
+
+-- PlaneWave.KineticLog.OpenSpin
+#print axioms KineticLog.torus_pair_core
+#print axioms KineticLog.free_kinetic_log_spin
+#print axioms KineticLog.free_stopping_log_spin
+
+-- PlaneWave.KineticLog.OpenSpinCompat
+#print axioms KineticLog.spin_budget
+#print axioms KineticLog.free_kinetic_log_nbo_spin
+#print axioms KineticLog.free_kinetic_log_bo_spin
+#print axioms KineticLog.free_kinetic_log_nbo_spin_uniform
+#print axioms KineticLog.free_kinetic_log_bo_spin_uniform
+
+-- PlaneWave.KineticLog.OpenFixed
+#print axioms KineticLog.free_kinetic_log_at
+#print axioms KineticLog.free_kinetic_log_spin_at
+#print axioms KineticLog.free_stopping_log_at
+#print axioms KineticLog.free_stopping_log_spin_at
+
+-- PlaneWave.KineticLog.PeriodicUniform
+#print axioms KineticLog.exists_const_forall_fin
+#print axioms KineticLog.thm_kinetic_log_galerkin_all
+#print axioms KineticLog.cor_stopping_log_galerkin_all
+#print axioms KineticLog.kinetic_retained_galerkin_spin_all
+#print axioms KineticLog.thm_kinetic_log_galerkin_spin_all
+#print axioms KineticLog.cor_stopping_log_galerkin_spin_all
+#print axioms KineticLog.thm_kinetic_log_grid_all
+#print axioms KineticLog.cor_stopping_log_grid_all
+#print axioms KineticLog.thm_kinetic_log_grid_spin_all
+#print axioms KineticLog.cor_stopping_log_grid_spin_all
+
+-- PlaneWave.KineticLog.PeriodicN
+#print axioms KineticLog.basis_N_arith
+#print axioms KineticLog.basis_N_arith_stop
+#print axioms KineticLog.thm_kinetic_log_galerkin_N
+#print axioms KineticLog.kinetic_retained_galerkin_N
+#print axioms KineticLog.cor_stopping_log_galerkin_N
+#print axioms KineticLog.kinetic_retained_galerkin_spin_N
+#print axioms KineticLog.thm_kinetic_log_galerkin_spin_N
+#print axioms KineticLog.cor_stopping_log_galerkin_spin_N
+#print axioms KineticLog.thm_kinetic_log_grid_N
+#print axioms KineticLog.cor_stopping_log_grid_N
+#print axioms KineticLog.thm_kinetic_log_grid_spin_N
+#print axioms KineticLog.cor_stopping_log_grid_spin_N
+
+-- PlaneWave.KineticLog.PeriodicMasses
+#print axioms KineticLog.PosSystem.latticeKernel_eq
+#print axioms KineticLog.PosSystem.kinExpect_eq
+#print axioms KineticLog.PosSystem.gridExpect_eq
+#print axioms KineticLog.PosSystem.galerkinH_eq
+#print axioms KineticLog.PosSystem.gridH_eq
+#print axioms KineticLog.PosSystem.kernel_scaled
+#print axioms KineticLog.PosSystem.exists_H
+#print axioms KineticLog.Xi_evoRescale_le
+#print axioms KineticLog.ode_unique
+#print axioms KineticLog.PosSystem.hasDerivAt_galerkinFlow
+#print axioms KineticLog.PosSystem.exists_galerkin_solution
+#print axioms KineticLog.PosSystem.galerkin_solution_eq
+#print axioms KineticLog.PosSystem.gridH_isSymmetric
+#print axioms KineticLog.PosSystem.exists_gridPropagator
+#print axioms KineticLog.PosSystem.ofCoulomb_latticeKernel
+#print axioms KineticLog.PosSystem.ofCoulomb_kinExpect
+#print axioms KineticLog.PosSystem.ofCoulomb_gridExpect
+#print axioms KineticLog.PosSystem.ofCoulomb_galerkinH
+#print axioms KineticLog.PosSystem.ofCoulomb_gridH
+#print axioms KineticLog.thm_kinetic_log_galerkin_pos
+#print axioms KineticLog.kinetic_retained_galerkin_pos
+#print axioms KineticLog.cor_stopping_log_galerkin_pos
+#print axioms KineticLog.thm_kinetic_log_grid_pos
+#print axioms KineticLog.cor_stopping_log_grid_pos
+#print axioms KineticLog.exists_evoData_pos
+#print axioms KineticLog.thm_kinetic_log_galerkin_spin_pos
+#print axioms KineticLog.cor_stopping_log_galerkin_spin_pos
+#print axioms KineticLog.thm_kinetic_log_grid_spin_pos
+#print axioms KineticLog.cor_stopping_log_grid_spin_pos
+#print axioms KineticLog.kinetic_retained_galerkin_spin_pos
+#print axioms KineticLog.thm_kinetic_log_galerkin_pos_N
+#print axioms KineticLog.kinetic_retained_galerkin_pos_N
+#print axioms KineticLog.cor_stopping_log_galerkin_pos_N
+#print axioms KineticLog.thm_kinetic_log_grid_pos_N
+#print axioms KineticLog.cor_stopping_log_grid_pos_N
+#print axioms KineticLog.kinetic_retained_galerkin_spin_pos_N
+#print axioms KineticLog.thm_kinetic_log_galerkin_spin_pos_N
+#print axioms KineticLog.cor_stopping_log_galerkin_spin_pos_N
+#print axioms KineticLog.thm_kinetic_log_grid_spin_pos_N
+#print axioms KineticLog.cor_stopping_log_grid_spin_pos_N
+
+-- PlaneWave.KineticLog.OpenVbar
+#print axioms KineticLog.gLzU_mono
+#print axioms KineticLog.gLmassConstU_mono
+#print axioms KineticLog.gLtailMU_mono
+#print axioms KineticLog.relBU_mono
+#print axioms KineticLog.cellC_mono
+#print axioms KineticLog.cellK0_mono
+#print axioms KineticLog.locC_mono
+#print axioms KineticLog.freeKinC_mono
+#print axioms KineticLog.freeKinConstNBO_mono
+#print axioms KineticLog.freeKinConstBO_mono
+#print axioms KineticLog.free_kinetic_log_endpoint_vbar
+#print axioms KineticLog.free_stopping_log_vbar
+#print axioms KineticLog.free_kinetic_log_N_vbar
+#print axioms KineticLog.free_kinetic_log_spin_vbar
+#print axioms KineticLog.free_stopping_log_spin_vbar
+#print axioms KineticLog.free_kinetic_log_nbo_vbar
+#print axioms KineticLog.free_kinetic_log_bo_vbar
+#print axioms KineticLog.free_kinetic_log_nbo_spin_vbar
+#print axioms KineticLog.free_kinetic_log_bo_spin_vbar
+#print axioms KineticLog.free_kinetic_log_vbar
+#print axioms KineticLog.free_kinetic_log_at_vbar
+#print axioms KineticLog.free_kinetic_log_spin_at_vbar
+#print axioms KineticLog.free_stopping_log_at_vbar
+#print axioms KineticLog.free_stopping_log_spin_at_vbar
+#print axioms KineticLog.free_kinetic_log_nbo_uniform_vbar
+#print axioms KineticLog.free_kinetic_log_bo_uniform_vbar
+#print axioms KineticLog.free_kinetic_log_nbo_spin_uniform_vbar
+#print axioms KineticLog.free_kinetic_log_bo_spin_uniform_vbar
+
+-- PlaneWave.KineticLog.OpenZeroMode
+#print axioms KineticLog.gLFourierPotentialZ_eq
+#print axioms KineticLog.hasGLHamiltonianZ_iff
+#print axioms KineticLog.budget_zero_mode
+#print axioms KineticLog.gridTerm_update
+#print axioms KineticLog.Hgrid_update
+#print axioms KineticLog.gridZeroWeight_im
+#print axioms KineticLog.propagator_phase
+#print axioms KineticLog.cell_phase
+#print axioms KineticLog.exists_gLPropagatorZ
+#print axioms KineticLog.cell_phase_eq
+#print axioms KineticLog.IsGridKernelZ.zero
+#print axioms KineticLog.IsGridKernelZ.zeroed
+#print axioms KineticLog.IsGridKernelZ.ofIsGridKernel
+#print axioms KineticLog.isGridKernelZ_sharp
+#print axioms KineticLog.regExpect_phase
+#print axioms KineticLog.grid_phase
+#print axioms KineticLog.gridZero_eq_zeroModeShift
+#print axioms KineticLog.budget_zero_mode_spin
+#print axioms KineticLog.free_kinetic_log_phys_endpoint
+#print axioms KineticLog.free_stopping_log_phys_endpoint
+#print axioms KineticLog.free_kinetic_log_spin_phys_endpoint
+#print axioms KineticLog.free_stopping_log_spin_phys_endpoint
+#print axioms KineticLog.free_kinetic_log_N_phys_endpoint
+#print axioms KineticLog.free_kinetic_log_phys
+#print axioms KineticLog.free_kinetic_log_phys_at
+#print axioms KineticLog.free_kinetic_log_spin_phys_at
+#print axioms KineticLog.free_stopping_log_phys_at
+#print axioms KineticLog.free_stopping_log_spin_phys_at
+#print axioms KineticLog.free_kinetic_log_nbo_phys
+#print axioms KineticLog.free_kinetic_log_bo_phys
+#print axioms KineticLog.free_kinetic_log_nbo_spin_phys
+#print axioms KineticLog.free_kinetic_log_bo_spin_phys
+#print axioms KineticLog.free_kinetic_log_nbo_uniform_phys
+#print axioms KineticLog.free_kinetic_log_bo_uniform_phys
+#print axioms KineticLog.free_kinetic_log_nbo_spin_uniform_phys
+#print axioms KineticLog.free_kinetic_log_bo_spin_uniform_phys
+
+-- PlaneWave.FreeBoundary.EnergyVbar
+#print axioms FreeBoundary.EbigU_mono
+#print axioms FreeBoundary.CgridU_mono
+#print axioms FreeBoundary.gLCubicConstU_mono
+#print axioms FreeBoundary.gLKcubU_mono
+#print axioms FreeBoundary.gLKThresholdU_mono
+#print axioms FreeBoundary.gLErrorConstU_mono
+#print axioms FreeBoundary.freeUpperBudget_mono
+#print axioms FreeBoundary.gLSectorKernelGridErrorU_vbar
+#print axioms FreeBoundary.gLSectorGridErrorU_vbar
+#print axioms FreeBoundary.free_energy_upper_vbar
+#print axioms FreeBoundary.free_energy_endpoint_vbar
+#print axioms FreeBoundary.free_energy_complexity_vbar
+#print axioms FreeBoundary.free_grid_complexity_prod_vbar
+#print axioms FreeBoundary.gLTorusGroundEnergy_ge_vbar
+#print axioms FreeBoundary.free_grid_two_sidedU_vbar
+#print axioms FreeBoundary.free_grid_exponentialU_vbar
+#print axioms FreeBoundary.free_grid_two_sidedU_prod_vbar
+#print axioms FreeBoundary.free_grid_exponentialU_prod_vbar
+
+-- PlaneWave.FreeBoundary.DynamicsVbar
+#print axioms FreeBoundary.flow2_mono'
+#print axioms FreeBoundary.sigmaU_mono
+#print axioms FreeBoundary.gridPhiU_mono_V
+#print axioms FreeBoundary.gridConstsSharp_gLU_mono_V
+#print axioms FreeBoundary.dynConst_mono
+#print axioms FreeBoundary.freeDynConst_mono
+#print axioms FreeBoundary.freeDynConstNBO_mono
+#print axioms FreeBoundary.freeDynConstBO_mono
+#print axioms FreeBoundary.freeDynConstSpinNBO_mono
+#print axioms FreeBoundary.freeDynConstSpinBO_mono
+#print axioms FreeBoundary.free_dyn_endpoint_vbar
+#print axioms FreeBoundary.free_dyn_nbo_endpoint_vbar
+#print axioms FreeBoundary.free_dyn_grid_bo_vbar
+#print axioms FreeBoundary.free_dyn_uniform_vbar
+#print axioms FreeBoundary.free_dyn_nbo_uniform_vbar
+#print axioms FreeBoundary.free_dyn_bo_uniform_vbar
+#print axioms FreeBoundary.free_dyn_nbo_spin_endpoint_vbar
+#print axioms FreeBoundary.free_dyn_bo_spin_endpoint_vbar
+#print axioms FreeBoundary.free_dyn_nbo_spin_uniform_vbar
+#print axioms FreeBoundary.free_dyn_bo_spin_uniform_vbar
+
+-- PlaneWave.FreeBoundary.DynamicsZeroMode
+#print axioms FreeBoundary.Hpos_update
+#print axioms FreeBoundary.Hpos_isSymmetric
+#print axioms FreeBoundary.posProp_phase
+#print axioms FreeBoundary.posProp_phase_zeroMode
+#print axioms FreeBoundary.exists_posPropagatorZ
+#print axioms FreeBoundary.budget_zero_mode_each
+#print axioms FreeBoundary.cell_unphase
+#print axioms FreeBoundary.exists_gLPropagatorZ'
+#print axioms FreeBoundary.free_dyn_torus_phys
+#print axioms FreeBoundary.free_dyn_torus_spin_phys
+#print axioms FreeBoundary.free_dyn_endpoint_phys
+#print axioms FreeBoundary.free_dyn_nbo_endpoint_phys
+#print axioms FreeBoundary.free_dyn_grid_bo_phys
+#print axioms FreeBoundary.free_dyn_uniform_phys
+#print axioms FreeBoundary.free_dyn_nbo_uniform_phys
+#print axioms FreeBoundary.free_dyn_bo_uniform_phys
+#print axioms FreeBoundary.free_dyn_nbo_spin_endpoint_phys
+#print axioms FreeBoundary.free_dyn_bo_spin_endpoint_phys
+#print axioms FreeBoundary.free_dyn_nbo_spin_uniform_phys
+#print axioms FreeBoundary.free_dyn_bo_spin_uniform_phys

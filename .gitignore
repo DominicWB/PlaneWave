@@ -1,10 +1,4 @@
-/.lake/
-*.olean
-*.ilean
-*.olean.private
-*.olean.server
-/axiom_report.txt
+/.lake
 /build_log.txt
-.DS_Store
-Thumbs.db
-*.swp
+/axiom_report.txt
+/axiom_reports.txt
